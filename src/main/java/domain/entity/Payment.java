@@ -37,7 +37,7 @@ public class Payment {
 	 * @param transactionId
 	 */
 	public void setTransactionId(int transactionId){
-
+		this.transactionId = transactionId;
 	}
 
 	/**
@@ -45,7 +45,7 @@ public class Payment {
 	 * @param change
 	 */
 	public void setChange(double change){
-
+		this.change = change;
 	}
 
 	/**
@@ -53,7 +53,7 @@ public class Payment {
 	 * @param payout
 	 */
 	public void setPayout(double payout){
-
+		this.payout = payout;
 	}
 
 	/**
@@ -61,7 +61,7 @@ public class Payment {
 	 * @param id
 	 */
 	public void setId(int id){
-
+		this.id = id;
 	}
 
 	public int getId(){
@@ -89,6 +89,6 @@ public class Payment {
 	 * @param visit
 	 */
 	public void setPatientVisit(Date visit){
-
+		this.visit = visit;
 	}
 }//end Payment

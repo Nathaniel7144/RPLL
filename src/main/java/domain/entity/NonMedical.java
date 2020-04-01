@@ -17,8 +17,8 @@ public class NonMedical extends Employee {
 	public void finalize() throws Throwable {
 		super.finalize();
 	}
-	public void setDept(){
-
+	public void setDept(int dept){
+		this.dept = dept;
 	}
 
 	public String getDept(){

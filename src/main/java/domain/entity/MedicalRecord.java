@@ -44,7 +44,7 @@ public class MedicalRecord {
 	 * @param complaint
 	 */
 	public void setComplaint(String complaint){
-
+		this.complaint = complaint;
 	}
 
 	/**
@@ -52,7 +52,7 @@ public class MedicalRecord {
 	 * @param diagnosis
 	 */
 	public void setDiagnosis(String diagnosis){
-
+		this.diagnosis = diagnosis;
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class MedicalRecord {
 	 * @param id
 	 */
 	public void setPhysicianId(int id){
-
+		this.id = id;
 	}
 
 	/**
@@ -68,7 +68,7 @@ public class MedicalRecord {
 	 * @param treatment
 	 */
 	public void setTreatment(String treatment){
-
+		this.treatment = treatment;
 	}
 
 	public String getProblem(){
@@ -100,7 +100,7 @@ public class MedicalRecord {
 	 * @param id
 	 */
 	public void setId(int id){
-
+		this.id = id;
 	}
 
 	public Date getVisit(){
@@ -112,6 +112,6 @@ public class MedicalRecord {
 	 * @param visit
 	 */
 	public void setVisit(Date visit){
-
+		this.visit = visit;
 	}
 }//end MedicalRecord

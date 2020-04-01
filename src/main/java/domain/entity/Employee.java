@@ -46,7 +46,7 @@ public abstract class Employee extends Person {
 	 * @param workSince
 	 */
 	public void setWorkSince(Date workSince){
-
+		this.workSince = workSince;
 	}
 
 	public Date getWorkSInce(){
@@ -70,7 +70,7 @@ public abstract class Employee extends Person {
 	 * @param id
 	 */
 	public void setId(int id){
-
+		this.id = id;
 	}
 
 	/**
@@ -78,7 +78,7 @@ public abstract class Employee extends Person {
 	 * @param position
 	 */
 	public void setPosition(String position){
-
+		this.position = position;
 	}
 
 	/**

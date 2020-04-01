@@ -26,6 +26,6 @@ public class Pharmacy extends Employee {
 	 * @param certificate
 	 */
 	public void setCompetency(String certificate){
-
+		this.certificate = certificate;
 	}
 }//end Pharmacy

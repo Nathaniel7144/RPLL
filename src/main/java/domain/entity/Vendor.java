@@ -25,7 +25,7 @@ public class Vendor {
 	 * @param id
 	 */
 	public void setId(int id){
-
+		this.id = id;;
 	}
 
 	public int getId(){
@@ -37,7 +37,7 @@ public class Vendor {
 	 * @param address
 	 */
 	public void setAddress(String address){
-
+		this.address = address;
 	}
 
 	public int getAddress(){
@@ -49,7 +49,7 @@ public class Vendor {
 	 * @param name
 	 */
 	public void setName(String name){
-
+		this.name = name;
 	}
 
 	public int getName(){

@@ -32,7 +32,7 @@ public class PatientVisit {
 	 * @param time
 	 */
 	public void setStart(Date time){
-
+		this.time = time;
 	}
 
 	public Date getEnd(){
@@ -44,7 +44,7 @@ public class PatientVisit {
 	 * @param time
 	 */
 	public void setEnd(Date time){
-
+		this.time = time;
 	}
 
 	public int getPatientId(){
@@ -56,7 +56,7 @@ public class PatientVisit {
 	 * @param id
 	 */
 	public void setPatientId(int id){
-
+		this.id = id;
 	}
 
 	public int getPaymentId(){
@@ -68,7 +68,7 @@ public class PatientVisit {
 	 * @param payment
 	 */
 	public void setPaymentId(int payment){
-
+		this.payment = payment;
 	}
 
 	/**
@@ -76,7 +76,7 @@ public class PatientVisit {
 	 * @param treated
 	 */
 	public void setTreated(boolean treated){
-
+		this.treated = treated;
 	}
 
 	public boolean getTreated(){

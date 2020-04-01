@@ -26,7 +26,7 @@ public class Schedule {
 	 * @param day
 	 */
 	public void setDay(String day){
-
+		this.day = day;
 	}
 
 	public String getDay(){
@@ -38,7 +38,7 @@ public class Schedule {
 	 * @param start
 	 */
 	public void setStart(Date start){
-
+		this.start = start;
 	}
 
 	public Date getStart(){
@@ -50,7 +50,7 @@ public class Schedule {
 	 * @param end
 	 */
 	public void setEnd(Date end){
-
+		this.end = end; 
 	}
 
 	public Date getEnd(){

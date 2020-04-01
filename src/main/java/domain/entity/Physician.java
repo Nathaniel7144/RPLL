@@ -24,7 +24,7 @@ public class Physician extends Employee {
 	 * @param specialist
 	 */
 	public void setSpecialist(String specialist){
-
+		this.specialist = specialist;
 	}
 
 	public String getSpecialist(){

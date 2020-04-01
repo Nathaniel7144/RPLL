@@ -28,7 +28,7 @@ public class Patient extends Person {
 	 * @param id
 	 */
 	public void setId(int id){
-
+		this.id = id;
 	}
 
 	public int getId(){
@@ -40,7 +40,7 @@ public class Patient extends Person {
 	 * @param reg
 	 */
 	public void setReg_Date(Date reg){
-
+		this.reg = reg;
 	}
 
 	public Date getReg_Date(){
@@ -52,7 +52,7 @@ public class Patient extends Person {
 	 * @param nama
 	 */
 	public void setPenanggungjawab(String nama){
-
+		this.nama = nama;
 	}
 
 	public String getPenanggungjawab(){
@@ -64,7 +64,7 @@ public class Patient extends Person {
 	 * @param telp
 	 */
 	public void setNoTelp(String telp){
-
+		this.telp = telp;
 	}
 
 	public String getNoTelp(){

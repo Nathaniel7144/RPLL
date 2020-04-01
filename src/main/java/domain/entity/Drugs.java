@@ -32,7 +32,7 @@ public class Drugs extends Product {
 	 * @param dose
 	 */
 	public void setDose(int dose){
-
+		this.dose = dose;
 	}
 
 	public int getDose(){
@@ -44,7 +44,7 @@ public class Drugs extends Product {
 	 * @param unit
 	 */
 	public void setUnit(String unit){
-
+		this.unit = unit;
 	}
 
 	public String getUnit(){

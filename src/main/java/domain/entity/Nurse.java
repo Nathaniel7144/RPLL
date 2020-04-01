@@ -21,7 +21,7 @@ public class Nurse extends Employee {
 		return "";
 	}
 
-	public void setType(){
-
+	public void setType(String type){
+		this.type = type;
 	}
 }//end Nurse

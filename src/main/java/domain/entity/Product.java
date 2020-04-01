@@ -1,5 +1,6 @@
 package domain.entity;
 
+import org.assertj.core.internal.bytebuddy.description.NamedElement;
 
 /**
  * @author Michael, Jessica
@@ -25,7 +26,7 @@ public class Product {
 	 * @param id
 	 */
 	public void setId(int id){
-
+		This.id = id;
 	}
 
 	public int getId(){
@@ -37,7 +38,7 @@ public class Product {
 	 * @param name
 	 */
 	public void setName(String name){
-
+		this.name = name;
 	}
 
 	public String getName(){
@@ -49,7 +50,7 @@ public class Product {
 	 * @param stock
 	 */
 	public void setStock(int stock){
-
+		this.stock = stock;
 	}
 
 	public int getStock(){

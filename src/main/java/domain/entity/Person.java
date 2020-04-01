@@ -46,7 +46,7 @@ public abstract class Person {
 	 * @param name
 	 */
 	public void setName(String name){
-
+		this.name = name;
 	}
 
 	/**
@@ -54,7 +54,7 @@ public abstract class Person {
 	 * @param address
 	 */
 	public void setAddress(String address){
-
+		this.address = address;
 	}
 
 	/**
@@ -62,7 +62,7 @@ public abstract class Person {
 	 * @param birthday
 	 */
 	public void setBirthday(Date birthday){
-
+		this.birthday = birthday;
 	}
 
 	/**
@@ -70,7 +70,7 @@ public abstract class Person {
 	 * @param gender
 	 */
 	public void setGender(int gender){
-
+		this.gender = gender;
 	}
 
 	public String getName(){
@@ -94,7 +94,7 @@ public abstract class Person {
 	 * @param id
 	 */
 	public void setId(int id){
-
+		this.id = id;
 	}
 
 	public int getId(){
@@ -106,7 +106,7 @@ public abstract class Person {
 	 * @param type
 	 */
 	public void setBloodType(char type){
-
+		this.type = type;
 	}
 
 	public char getBloodType(){
@@ -118,7 +118,7 @@ public abstract class Person {
 	 * @param number
 	 */
 	public void setPhone(String number){
-
+		this.number = number;
 	}
 
 	public String getPhone(){
@@ -130,7 +130,7 @@ public abstract class Person {
 	 * @param religion
 	 */
 	public void setReligion(String religion){
-
+		this.religion = religion;
 	}
 
 	public String getReligion(){
@@ -142,7 +142,7 @@ public abstract class Person {
 	 * @param nik
 	 */
 	public void setNIK(String nik){
-
+		this.nik = nik
 	}
 
 	public String getNIK(){

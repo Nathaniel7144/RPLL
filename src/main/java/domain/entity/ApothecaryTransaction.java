@@ -35,7 +35,7 @@ public class ApothecaryTransaction extends Transaction {
 	 * @param paymentId
 	 */
 	public void setPaymentId(int paymentId){
-
+		this.paymentId = paymentId;
 	}
 
 	public int getMedRecId(){
@@ -47,6 +47,6 @@ public class ApothecaryTransaction extends Transaction {
 	 * @param medrecId
 	 */
 	public void setMedRecId(int medrecId){
-
+		this.medrecId = medrecId;
 	}
 }//end ApothecaryTransaction
