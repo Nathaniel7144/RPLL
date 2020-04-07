@@ -1,5 +1,8 @@
 package domain.hr.dao;
 
-public class PersonDAO {
+import domain.hr.entity.Person;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PersonDAO extends JpaRepository<Person, Integer>{
 
 }

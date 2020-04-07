@@ -1,29 +1,10 @@
 package domain.crm.dao;
 
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import domain.crm.entity.Patient; 
+import domain.crm.entity.Patient;
+import domain.hr.entity.Person; 
 
-public class PatientDAO {
-
-	List<Patient> getAllPatient()
-	{
-		return null;
-	}
-
-    Patient findPatientById(int id)
-    {
-    	return null;
-    }
-
-    Patient savePatient(Patient patient)
-    {
-    	return null;
-    }
-
-    void deletePatientById(int id)
-    {
-    	
-    }
+public interface PatientDAO extends JpaRepository<Patient, Integer>{
 	
 }

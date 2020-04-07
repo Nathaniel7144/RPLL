@@ -13,12 +13,9 @@ public class MedicalRecord {
 	private String problem;
 	private String diagnosis;
 	private String treatment;
-	private Date Date;
 	private int patientId;
 	private int physicianId;
-	private Date patientVisit;
-	private String complaint;
-	private PatientVisit visit;
+	private Date patientVisitTime;
 
 	public MedicalRecord(){
 
@@ -37,83 +34,60 @@ public class MedicalRecord {
 
 	}
 
-	public int getPatientId(){
-		return 0;
+
+	public int getId() {
+		return id;
 	}
 
-	/**
-	 * 
-	 * @param complaint
-	 */
-	public void setComplaint(String complaint){
-		this.complaint = complaint;
-	}
-
-	/**
-	 * 
-	 * @param diagnosis
-	 */
-	public void setDiagnosis(String diagnosis){
-		this.diagnosis = diagnosis;
-	}
-
-	/**
-	 * 
-	 * @param id
-	 */
-	public void setPhysicianId(int id){
-		this.physicianId = id;
-	}
-
-	/**
-	 * 
-	 * @param treatment
-	 */
-	public void setTreatment(String treatment){
-		this.treatment = treatment;
-	}
-
-	public String getProblem(){
-		return "";
-	}
-
-	public String getDiagnosis(){
-		return "";
-	}
-
-	public int getNo(){
-		return 0;
-	}
-
-	public int getPhysicianId(){
-		return 0;
-	}
-
-	public String getTreatment(){
-		return "";
-	}
-
-	public Date getDate(){
-		return null;
-	}
-
-	/**
-	 * 
-	 * @param id
-	 */
-	public void setId(int id){
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public Date getVisit(){
-		return null;
+	public String getProblem() {
+		return problem;
 	}
 
-	/**
-	 * 
-	 * @param visit
-	 */
-	public void setVisit(PatientVisit visit){
-		this.visit = visit;
+	public void setProblem(String problem) {
+		this.problem = problem;
+	}
+
+	public String getDiagnosis() {
+		return diagnosis;
+	}
+
+	public void setDiagnosis(String diagnosis) {
+		this.diagnosis = diagnosis;
+	}
+
+	public String getTreatment() {
+		return treatment;
+	}
+
+	public void setTreatment(String treatment) {
+		this.treatment = treatment;
+	}
+
+	public int getPatientId() {
+		return patientId;
+	}
+
+	public void setPatientId(int patientId) {
+		this.patientId = patientId;
+	}
+
+	public int getPhysicianId() {
+		return physicianId;
+	}
+
+	public void setPhysicianId(int physicianId) {
+		this.physicianId = physicianId;
+	}
+
+	public Date getPatientVisitTime() {
+		return patientVisitTime;
+	}
+
+	public void setPatientVisitTime(Date patientVisitTime) {
+		this.patientVisitTime = patientVisitTime;
 	}
 }//end MedicalRecord

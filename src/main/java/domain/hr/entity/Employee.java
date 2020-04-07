@@ -10,7 +10,7 @@ import java.util.Date;
 public abstract class Employee extends Person {
 
 	private Date workSince;
-	private int emp_id;
+	private int id;
 	private String position;
 	private Schedule listSchedule;
 	private String email;
@@ -70,7 +70,7 @@ public abstract class Employee extends Person {
 	 * @param id
 	 */
 	public void setId(int id){
-		this.emp_id = id;
+		this.id = id;
 	}
 
 	/**

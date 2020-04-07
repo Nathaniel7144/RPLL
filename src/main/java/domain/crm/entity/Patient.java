@@ -15,8 +15,6 @@ public class Patient extends Person {
 	private Date registerDate;
 	private String guardian;
 	private String guardianPhone;
-	private MedicalRecord m_MedicalRecord;
-	public PatientVisit m_PatientVisit;
 
 	public Patient(){
 

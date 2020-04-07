@@ -9,12 +9,10 @@ import java.util.Date;
  */
 public class PatientVisit {
 
-	private Date start;
-	private Date end;
+	private Date starttime;
+	private Date endtime;
 	private int patientId;
-	private int paymentId;
 	private boolean isTreated;
-	public MedicalRecord medicalRecord;
 
 	public PatientVisit(){
 
@@ -32,7 +30,7 @@ public class PatientVisit {
 	 * @param time
 	 */
 	public void setStart(Date time){
-		this.start = time;
+		this.starttime = time;
 	}
 
 	public Date getEnd(){
@@ -44,7 +42,7 @@ public class PatientVisit {
 	 * @param time
 	 */
 	public void setEnd(Date time){
-		this.end = time;
+		this.endtime = time;
 	}
 
 	public int getPatientId(){
@@ -57,18 +55,6 @@ public class PatientVisit {
 	 */
 	public void setPatientId(int id){
 		this.patientId = id;
-	}
-
-	public int getPaymentId(){
-		return 0;
-	}
-
-	/**
-	 * 
-	 * @param payment
-	 */
-	public void setPaymentId(int paymentId){
-		this.paymentId = paymentId;
 	}
 
 	/**
