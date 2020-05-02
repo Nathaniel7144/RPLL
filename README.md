@@ -9,5 +9,6 @@
 
 ## Pengerjaan
 Tools yang digunakan untuk pengerjaan project ini adalah:
-1. Spring (back-end)
-2. Enterprise Architect (design dan planning)
+1. Laravel (back-end)
+2. JQuery (front-end)
+3. Enterprise Architect (design dan planning)
