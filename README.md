@@ -1,4 +1,4 @@
-# Tugas Besar RPLL dan Advanced Java Technology
+# Tugas Besar RPLL
 # Topik : Klinik
 
 ### NIM - Nama
