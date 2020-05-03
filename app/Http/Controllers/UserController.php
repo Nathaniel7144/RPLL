@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 // // use Illuminate\Foundation\Bus\DispatchesJobs;
 // // use Illuminate\Routing\Controller as BaseController;
 // // use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -13,21 +14,24 @@ class UserController extends Controller
 {
     //
     public function login(Request $request)
+    {
+        
+        $email = $request->input('email');
 
-	 {
-         $email = $request->input('email');
-
-        //  echo $email;
         $checklogin = DB::table('employee')->where(['email'=>$email])->get();
-
+        $result = [];
+        
         if(count($checklogin) > 0)
         {
-            echo "login success";
+            //     echo "login success";
+            Log::debug("email login succeeded");
         }
         else
         {
-            echo "login failed";
+            Log::debug("email login failed");
+            $result = (object) ["error" => "Email is not found in database"];
         }
-     }
+        return json_encode($result);
+    }
 }
 ?>

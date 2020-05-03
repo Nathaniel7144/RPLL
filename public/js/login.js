@@ -9,6 +9,7 @@ user = undefined
 $(document).ready(function () {
     userView = new UserView(user);
     changeUIIfUserExists();
+    onSubmitLoginForm();
 })
 
 function changeUIIfUserExists() {
@@ -28,4 +29,27 @@ function emailToPasswordInput() {
         placeholder: "Password"
     });
     $("#login__ic").attr("src", userView.ASSET + "ic_lock.png");
+}
+
+function onSubmitLoginForm(){
+    $("form").submit(function(event){
+        event.preventDefault();
+        userInput = $("#login__input");
+        if(userInput.attr('type') === "email"){
+            $.when(getUserFromEmail(userInput.val())).done(function(result){
+                result = JSON.parse(result);
+                if(result.error !== undefined){
+                    onLoginFail(result.error);
+                }else{
+                    user = result;
+                }
+            })
+        }else{ // if password is what is submitted
+            
+        }
+    })
+}
+
+function onLoginFail(errorMessage){
+    alert(errorMessage);
 }
