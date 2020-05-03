@@ -23,14 +23,14 @@
 		<div id="login__exp">
 			<h5 class="welcome display-4">Welcome</h5>
 			<p id="user__name"></p>
-			<form>
+			<form method="get" action="/loginme">
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
 						<span class="input-group-text">
 							<img src="/img/ic_email.png" id="login__ic" width="19px" height="19px">
 						</span>
 					</div>
-					<input type="email" class="form-control" placeholder="Email" id="login__input">
+					<input type="email" class="form-control" placeholder="Email" id="login__input" name="email">
 				</div>
 				<br>
 				<input id="login__submit" type="submit" class="form-control" value="Login">

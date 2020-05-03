@@ -22,3 +22,4 @@ Route::get('/home',function(){
 Route::get('/login',function(){
     return view('login');
 });
+Route::get('/loginme', 'UserController@login');
