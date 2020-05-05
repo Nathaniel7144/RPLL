@@ -1,4 +1,11 @@
-user = undefined
+user = {
+    id: 1,
+    name: "Alex",
+    gender: 0,
+    position: "Doctor"
+} //temp
+
+// user = undefined
 
 $(document).ready(function () {
     userView = new UserView(user);
@@ -40,21 +47,25 @@ function onSubmitLoginForm(){
                 }
             })
         }else{ // if password is what is submitted
-            $.when(
-                userLogin(
-                    user.email,
-                    userInput.val()
-                )
-            ).done(function(result){
-                result = JSON.parse(result);
-                if(result.error !== undefined){
-                    onLoginFail(result.error);
-                }else{
-                    user = result;
-                    createSession();
-                    redirectTo("/home");
-                }
-            });
+            // $.when(
+            //     userLogin(
+            //         user.email,
+            //         userInput.val()
+            //     )
+            // ).done(function(result){
+            //     result = JSON.parse(result);
+            //     if(result.error !== undefined){
+            //         onLoginFail(result.error);
+            //     }else{
+            //         user = result;
+            //         createSession();
+            //         redirectTo("/home");
+            //     }
+            // });
+            
+            //temp
+            createSession();
+            redirectTo("/home");
         }
     })
 }

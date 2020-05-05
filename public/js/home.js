@@ -1,23 +1,30 @@
 // Script for home.html. This page can only be entered if user exists
 
-user = {
-   name: "Alex",
-   gender: 1,
-   position: "Doctor"
-}
-
 $(document).ready(function () {
-    userView = new UserView(user);
+    userView = new UserView(getUser());
 
     userView.setAvatar();
     userView.displayUsername();
 
-    // profile pencil icon
+    onHoverProfileText();
+    onClickLogoutButton();
+})
+
+function onHoverProfileText(){
     $("#edit-profile").hover(function(){
-        $("#avatar__ic_edit").attr('src', "../asset/ic_edit_hover.png");
+        $("#avatar__ic_edit").attr('src', "/img/ic_edit_hover.png");
     });
 
     $("#edit-profile").mouseleave(function(){
-        $("#avatar__ic_edit").attr('src', "../asset/ic_edit.png");
+        $("#avatar__ic_edit").attr('src', "/img/ic_edit.png");
     });
-})
+}
+
+function onClickLogoutButton(){
+    $("#ic_logout").click(function(){
+        if(confirm("Are you sure you want to logout?")){
+            logout();
+            redirectTo("/login");
+        }
+    })
+}

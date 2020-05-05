@@ -11,7 +11,8 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<script src="{{asset('js/userview.js')}}"></script>
-	<script src="../js/home.js"></script>
+	<script src="{{asset('js/home.js')}}"></script>
+	<script src="{{asset('js/util.js')}}"></script>
 </head>
 
 <body id="home">
@@ -32,6 +33,7 @@
 				<img src="/img/general_male.jpg" id="user__avatar__img">
 			</div>
 		</div>
+		<img src="/img/ic_logout.png" id="ic_logout">
     </header>
     <aside>
         <ul class="nav flex-column" id="menu"></ul>
