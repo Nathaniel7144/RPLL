@@ -25,4 +25,4 @@ Route::get('/login',function(){
 
 // Functional API
 
-Route::post('/login-email', 'UserController@login');
+Route::post('/login-email', 'UserController@getUserFromEmail');

@@ -1,16 +1,7 @@
-user = {
-    id: 1,
-    name: "Alex",
-    gender: 0,
-    email: "tes@mail.com",
-    position: "Admin"
-} // will be accepted from server later
-
-// user = undefined
+user = undefined
 
 $(document).ready(function () {
     userView = new UserView(user);
-    changeUIIfUserExists();
     onSubmitLoginForm();
 })
 
@@ -30,6 +21,7 @@ function emailToPasswordInput() {
         type: "password",
         placeholder: "Password"
     });
+    setInputValue($("#login__input"), "");
     $("#login__ic").attr("src", userView.ASSET + "ic_lock.png");
 }
 
@@ -44,6 +36,7 @@ function onSubmitLoginForm(){
                     onLoginFail(result.error);
                 }else{
                     user = result;
+                    changeUIIfUserExists();
                 }
             })
         }else{ // if password is what is submitted

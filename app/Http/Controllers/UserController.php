@@ -13,25 +13,32 @@ use Illuminate\Support\Facades\DB;
 class UserController extends Controller
 {
     //
-    public function login(Request $request)
+    private function login(Request $request)
     {
         
+
+    }
+
+    public function getUserFromEmail(Request $request)
+    {
         $email = $request->input('email');
 
-        $checklogin = DB::table('employee')->where(['email'=>$email])->get();
+        $employee = (array) json_decode(DB::table('employee')->where(['email'=>$email])->get());
+        $employee = (array) $employee[0];
         
-        if(count($checklogin) > 0)
+        if(count($employee) > 0)
         {
             //     echo "login success";
-            $idperson = DB::tables('employee')->where(['email'=>$email])->value('person_id');
-            $position = DB::tables('employee')->where(['email'=>$email])->value('position');
-            $name = DB::table('person')->where(['id'=>$idperson])->value('name');
-            $gender = DB::table('person')->where(['id'=>$idperson])->value('gender');
+            $person = (array) json_decode(DB::table('person')->select(
+                "name", "gender"
+            )->where(['id'=>$employee["person_id"]])->get());
+            $person = (array) $person[0];
+
             $result = [
-                "name"=>$name,
-                "gender"=>$gender,
+                "name"=>$person["name"],
+                "gender"=>$person["gender"],
                 "email"=>$email,
-                "position"=>$position
+                "position"=>$employee["position"]
             ];
             Log::debug("email login succeeded");
         }
