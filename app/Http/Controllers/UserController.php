@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Log;
 // // use Illuminate\Routing\Controller as BaseController;
 // // use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 // use Illuminate\Foundation\Auth\Access\AuthorizesResources;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -19,11 +19,20 @@ class UserController extends Controller
         $email = $request->input('email');
 
         $checklogin = DB::table('employee')->where(['email'=>$email])->get();
-        $result = [];
         
         if(count($checklogin) > 0)
         {
             //     echo "login success";
+            $idperson = DB::tables('employee')->where(['email'=>$email])->value('person_id');
+            $position = DB::tables('employee')->where(['email'=>$email])->value('position');
+            $name = DB::table('person')->where(['id'=>$idperson])->value('name');
+            $gender = DB::table('person')->where(['id'=>$idperson])->value('gender');
+            $result = [
+                "name"=>$name,
+                "gender"=>$gender,
+                "email"=>$email,
+                "position"=>$position
+            ];
             Log::debug("email login succeeded");
         }
         else
