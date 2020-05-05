@@ -1,10 +1,12 @@
-// user = {
-//    name: "Alex",
-//    gender: 0,
-//    position: "Admin"
-// } // will be accepted from server later
+user = {
+    id: 1,
+    name: "Alex",
+    gender: 0,
+    email: "tes@mail.com",
+    position: "Admin"
+} // will be accepted from server later
 
-user = undefined
+// user = undefined
 
 $(document).ready(function () {
     userView = new UserView(user);
@@ -45,11 +47,34 @@ function onSubmitLoginForm(){
                 }
             })
         }else{ // if password is what is submitted
-            
+            $.when(
+                userLogin(
+                    user.email,
+                    userInput.val()
+                )
+            ).done(function(result){
+                result = JSON.parse(result);
+                if(result.error !== undefined){
+                    onLoginFail(result.error);
+                }else{
+                    user = result;
+                    createSession();
+                    redirectTo("/home");
+                }
+            });
         }
     })
 }
 
 function onLoginFail(errorMessage){
     alert(errorMessage);
+}
+
+function createSession(){
+    sessionStorage.setItem("user", JSON.stringify({
+        "id": user.id,
+        "name": user.name,
+        "gender": user.gender,
+        "position": user.position
+    }));
 }

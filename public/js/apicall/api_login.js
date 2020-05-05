@@ -9,7 +9,23 @@ function getUserFromEmail(_email){
             email: _email
         },
         success: function(result){
-            // window.location.href = window.location.origin + "/home";\
+            return result;
+        }
+    });
+}
+
+function userLogin(_email, _pwd){
+    return $.ajax({
+        type: 'POST',
+        url: '/login-pwd',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {
+            email: _email,
+            pwd: _pwd
+        },
+        success: function(result){
             return result;
         }
     });

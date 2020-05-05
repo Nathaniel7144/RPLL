@@ -13,6 +13,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<script src="{{asset('js/userview.js')}}"></script>
 	<script src="{{asset('js/login.js')}}"></script>
+	<script src="{{asset('js/util.js')}}"></script>
 	<script src="{{asset('js/apicall/api_login.js')}}"></script>
 </head>
 

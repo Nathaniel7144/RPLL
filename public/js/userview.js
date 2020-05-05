@@ -19,7 +19,7 @@ class UserView {
         }
     }
 
-    ASSET = "../asset/";
+    ASSET = "/img/";
     name = '';
     gender = '';
     position = '';
