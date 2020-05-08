@@ -1,13 +1,17 @@
 // Script for home.html. This page can only be entered if user exists
 
 $(document).ready(function () {
-    userView = new UserView(getUser());
+    if(getUser() !== null){
+        userView = new UserView(getUser());
 
-    userView.setAvatar();
-    userView.displayUsername();
+        userView.setAvatar();
+        userView.displayUsername();
 
-    onHoverProfileText();
-    onClickLogoutButton();
+        onHoverProfileText();
+        onClickLogoutButton();
+    }else{
+        redirectTo("/login");
+    }
 })
 
 function onHoverProfileText(){
