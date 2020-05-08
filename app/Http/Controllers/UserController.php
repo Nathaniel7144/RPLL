@@ -24,11 +24,11 @@ class UserController extends Controller
         $email = $request->input('email');
 
         $employee = (array) json_decode(DB::table('employee')->where(['email'=>$email])->get());
-        $employee = (array) $employee[0];
         
         if(count($employee) > 0)
         {
             //     echo "login success";
+            $employee = (array) $employee[0];
             $person = (array) json_decode(DB::table('person')->select(
                 "name", "gender"
             )->where(['id'=>$employee["person_id"]])->get());
