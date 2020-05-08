@@ -23,7 +23,7 @@
 		</form>
 		<div class="profile">
 			<div class="profile__text">
-				<p id="user__name">/fsd</p>
+				<p id="user__name"></p>
 				<a href="#" id="edit-profile">
 					<img id="avatar__ic_edit" src="/img/ic_edit.png">
 					Edit Profile

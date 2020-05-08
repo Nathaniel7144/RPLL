@@ -83,5 +83,15 @@ header{
 /* aside */
 
 aside{
-    margin: 100px 20px;
+    margin: 146px 20px;
+    width: fit-content;
+}
+
+#menu .nav-link {
+    font-weight: 500;
+    color: #707070;
+}
+
+#menu .active{
+    color: #007bff;
 }
