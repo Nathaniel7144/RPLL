@@ -49,5 +49,25 @@ class UserController extends Controller
         }
         return json_encode($result);
     }
+    public function getUserFromPassword(Request $request)
+    {
+        $email=$request->input('email');
+        $password=$request->input('password');
+
+        $checkemail=DB::table('employee')->where(['email'=>$email])->get();
+        $checkpass=DB::table('employee')->select("password")->where(['email'=>$email])->get();
+
+        if(count($checkemail) > 0 )
+        {
+            if($password==$checkpass){
+                echo "berhasil";
+            }else{
+                echo "gagal";
+            }
+        }else
+        {
+            echo "gagal";
+        }
+    }
 }
 ?>
