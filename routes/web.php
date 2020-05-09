@@ -25,5 +25,5 @@ Route::get('/login',function(){
 
 // Functional API
 
-Route::post('/login-email', 'UserController@getUserFromEmail');
-Route::post('/login-pass', 'UserController@getUserFromPassword');
+Route::post('/login-email', 'LoginController@getUserFromEmail');
+Route::post('/login-pass', 'LoginController@authenticateUser');

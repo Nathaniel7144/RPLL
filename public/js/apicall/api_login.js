@@ -17,7 +17,7 @@ function getUserFromEmail(_email){
 function userLogin(_email, _pwd){
     return $.ajax({
         type: 'POST',
-        url: '/login-pwd',
+        url: '/login-pass',
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
