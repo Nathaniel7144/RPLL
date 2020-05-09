@@ -23,7 +23,16 @@ Route::get('/login',function(){
     return view('login');
 });
 
+
 // Functional API
 
 Route::post('/login-email', 'LoginController@getUserFromEmail');
 Route::post('/login-pass', 'LoginController@authenticateUser');
+
+//medrec
+Route::get('/testmed/MedicalRecord','MedicalRecordController@index');
+Route::get('/testmed/createmedrec','MedicalRecordController@create');
+Route::post('/testmed/MedicalRecord','MedicalRecordController@store');
+Route::get('/testmed/{med}/edit','MedicalRecordController@edit');
+Route::patch('/testmed/{med}','MedicalRecordController@update');
+
