@@ -13,3 +13,9 @@ function getUser(){
 function logout(){
     sessionStorage.removeItem("user");
 }
+
+function importScript(path){
+    $("head").append(
+        `<script src="js/${path}"></script>`
+    );
+}

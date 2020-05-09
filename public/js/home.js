@@ -1,29 +1,43 @@
 // Script for home.html. This page can only be entered if user exists
 
 UI_BASED_ON_JOBS = {
-    "Doctor": [
-        { menu: "Queue", search: "Patient" },
-        { menu: "Medical Records", search: "Medical Record" }
-    ],
-    "Nurse": [
-        { menu: "Queue", search: "Patient" },
-        { menu: "Medical Records", search: "Medical Record" }
-    ],
-    "Customer Service": [
-        { menu: "Patient Registration", search: "Patient" },
-        { menu: "Queue", search: "Patient" }
-    ],
-    "HR": [
-        { menu: "Employees", search: "Employee" }
-    ],
-    "Pharmacy": [
-        { menu: "Selling", search: "Product" },
-        { menu: "Products", search: "Product" }
-    ],
-    "Cashier": [
-        { menu: "Invoices", search: "Invoice" },
-        { menu: "Payment History", search: "Invoice" }
-    ]
+    "Doctor": {
+        basic: [
+            { menu: "Queue", search: "Patient" },
+            { menu: "Medical Records", search: "Medical Record" }
+        ],
+        path: "position_specific/doctor_nurse.js"
+    },
+    "Nurse": {
+        basic: [
+            { menu: "Queue", search: "Patient" },
+            { menu: "Medical Records", search: "Medical Record" }
+        ],
+        path: "position_specific/doctor_nurse.js"
+    },
+    "Customer Service": {
+        basic: [
+            { menu: "Patient Registration", search: "Patient" },
+            { menu: "Queue", search: "Patient" }
+        ]
+    },
+    "HR": {
+        basic: [
+            { menu: "Employees", search: "Employee" }
+        ]
+    },
+    "Pharmacy": {
+        basic: [
+            { menu: "Selling", search: "Product" },
+            { menu: "Products", search: "Product" }
+        ]
+    },
+    "Cashier": {
+        basic: [
+            { menu: "Invoices", search: "Invoice" },
+            { menu: "Payment History", search: "Invoice" }
+        ]
+    }
 }
 
 selected_menu = -1;
@@ -40,6 +54,8 @@ $(document).ready(function () {
         getMenu();
         setSearch();
         onSelectMenu();
+        setHomeBasedOnPosition();
+
     } else {
         redirectTo("/login");
     }
@@ -67,11 +83,11 @@ function onClickLogoutButton() {
 function getMenu() {
     selected_menu = 0;
     isSelected = false;
-    for (ui of UI_BASED_ON_JOBS[getUser().position]) {
+    for (ui of UI_BASED_ON_JOBS[getUser().position].basic) {
         classname = "nav-link active";
-        if(!isSelected){
+        if (!isSelected) {
             isSelected = true;
-        }else{
+        } else {
             classname = "nav-link";
         }
 
@@ -85,8 +101,8 @@ function getMenu() {
     }
 }
 
-function onSelectMenu(){
-    $(".nav-link").click(function(e){
+function onSelectMenu() {
+    $(".nav-link").click(function (e) {
         selected_menu = Array.from($(".nav-link")).indexOf(e.target);
         setSearch();
     })
@@ -96,7 +112,11 @@ function setSearch() {
     $("#search__box").attr(
         "placeholder",
         `Search ${
-            UI_BASED_ON_JOBS[getUser().position][selected_menu]["search"]
+            UI_BASED_ON_JOBS[getUser().position].basic[selected_menu]["search"]
         }`
     )
+}
+
+function setHomeBasedOnPosition() {
+    importScript(UI_BASED_ON_JOBS[getUser().position].path);
 }
