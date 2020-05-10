@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Patient;
+use App\Person;
 use Illuminate\Support\Facades\DB;
 
 use function GuzzleHttp\Promise\all;
@@ -72,8 +73,8 @@ class PatientController extends Controller
      */
     public function edit($id)
     {
-        //
-        return view('testpat.createPatient');
+        $patient =  Patient::find($id);
+        return view('testpat.editPatient', compact('patient','id'));
     }
 
     /**
@@ -85,8 +86,15 @@ class PatientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        return view('testpat.createPatient');
+        DB::table('patient')
+              ->where(['id'=>$id])
+              ->update([
+                'person_id'=>$request->person_id,
+                'register'=>$request->register,
+                'guardian'=>$request->guardian,
+                'guardianphone'=>$request->guardianphone
+            ]);
+        return redirect('testpat/Patient');
     }
     /**
      * Remove the specified resource from storage.
@@ -98,6 +106,39 @@ class PatientController extends Controller
     {
         //
         return view('testpat.createPatient');
+    }
+
+    /**
+     * Show the form for view details the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function details($id)
+    {
+        $patient =  Person::find($id);
+        return $patient;
+    }
+
+    /**
+     * Show the form for view details the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function search()
+    {
+        return view('testpat.searchid');
+    }
+
+    public function searchperson(Request $request)
+    {
+        $name = $request->name;
+        $gender = $request->gender;
+        $address = $request->address;
+        $id = DB::table('person')->select('id')->where(['name'=>$name, 'gender'=>$gender, 'address'=>$address])->get();
+        $patient =  Person::find($id);
+        return $patient;
     }
 }
 ?>

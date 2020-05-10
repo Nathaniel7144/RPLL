@@ -3,50 +3,103 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
-// // use Illuminate\Foundation\Bus\DispatchesJobs;
-// // use Illuminate\Routing\Controller as BaseController;
-// // use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-// use Illuminate\Foundation\Auth\Access\AuthorizesResources;
+use App\Visit;
 use Illuminate\Support\Facades\DB;
 
-class PatientController extends Controller
+use function GuzzleHttp\Promise\all;
+
+class PatientVisitController extends Controller
 {
-    public function createQueue(Request $request){
-        $line = $request->input('line');
-        $starttime = $request->input('starttime');
-        $patientvis = DB::table(patientvisit)->select('*')->where(['starttime'=>$starttime, 'istrated' => '0'])->toArray();
-        for ($i = 0;$i < $line;$i++){
-            $result = [
-                "patient_id"=>$patientvis["patient_id"]
-            ];
-        }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $visit = Visit::all();
+        return view('testvis.Visit',compact('visit'));
     }
 
-    public function getPatientsPer(Request $request){
-        $date = $request->input('date');
-        $ckeckPatient = DB::table('patientvisit')->where(['starttime'=>$date])->get();
-
-        for ($i = 0;$i < count($ckeckPatient);$i++){
-            //     echo "success";
-            $patient = DB::table('patientvisit')->select(
-                "patient_id", "istrated"
-            )->where(['starttime'=>$date])->get();
-            $patient = (array) $patient[0];
-
-            $result = [
-                "patient_id"=>$patient["patient_id"],
-                "istrated"=>$patient["istrated"]
-            ];
-            Log::debug("succeeded");
-        }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('testvis.Visit');
     }
 
-    public function markTreated(Request $request, $id){
-        $inserted = $request->input('inserted');
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        DB::table('patientvisit')->insert([
+            ['starttime'=>$request->input('starttime'),
+            'endtime'=>$request->input('endtime'),
+            'patient_id'=>$request->input('patient_id'),
+            'istreated'=>$request->input('istreated')]
+        ]);
 
-        $update = array('inserted' => $inserted);
+        return view('testvis.createVisit');
+    }
 
-        DB::table('patientvisit') -> update($update) -> where(['id'=>$id]);
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+        $visit = DB::table('patientvisit')->where(['id'=>$id])->get();
+
+         return $visit;
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $visit =  Visit::find($id);
+        return view('testvis.editVisit', compact('visit','id'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        DB::table('patientvisit')
+              ->where(['id'=>$id])
+              ->update([
+                'istreated'=>$request->istreated
+            ]);
+        return redirect('testvis/Visit');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        return view('testvis.Visit');
     }
 }

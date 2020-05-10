@@ -38,10 +38,13 @@ Route::patch('/testmed/{med}','MedicalRecordController@update');
 
 //patient
 Route::get('/testpat/Patient','PatientController@index');
+Route::get('/testpat/{pat}/Patient','PatientController@details');
 Route::get('/testpat/createPatient','PatientController@create');
+Route::get('/testpat/searchid','PatientController@search');
 Route::post('/testpat/Patient','PatientController@store');
-// Route::get('/testpat/Patient','PatientControlle@edit');
-// Route::patch('/testmed/{med}','MedicalRecordController@update');
+Route::get('/testpat/{pat}/testpat/editPatient','PatientController@edit');
+Route::patch('/testpat/{pat}','PatientController@update');
+Route::patch('/testpat/searchid','PatientController@searchperson');
 
 //person
 Route::get('/testper/Person','PersonController@index');
@@ -49,3 +52,10 @@ Route::get('/testper/createPerson','PersonController@create');
 Route::post('/testper/Person','PersonController@store');
 Route::get('/testper/{per}/testper/editPerson','PersonController@edit');
 Route::patch('/testper/{per}','PersonController@update');
+
+//Visit
+Route::get('/testvis/Visit','PatientVisitController@index');
+Route::get('/testvis/createVisit','PatientVisitController@create');
+Route::post('/testvis/Visit','PatientVisitController@store');
+Route::get('/testvis/{vis}/testvis/editVisit','PatientVisitController@edit');
+Route::patch('/testvis/{vis}','PatientVisitController@update');
