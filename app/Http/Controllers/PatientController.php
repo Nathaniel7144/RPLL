@@ -11,17 +11,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 
 class PatientController extends Controller
-{
-    public function create(){
-        return view('patient.create');
-    }
-
-    public function edit($id){
-        $patient =  Patient::find($id)
-        return view('patient.edit', compact('name', 'id'));
-    }
-
-    public function getPatient(Request $request){
+{    public function getPatient(Request $request){
         $idPatient = $request->input('idpatient');
         $ckeckPatient = DB::table('patient')->where(['id'=>$idPatient])->get();
         
@@ -51,77 +41,40 @@ class PatientController extends Controller
     }
 
     public function getPatientsPer(Request $request){
-        $idPatient = $request->input('line');
-        $ckeckPatient = DB::table('patient')->where(['id'=>$idPatient])->get();
-        for ($i = 0;$i < $idPatient;$i++){
-            if(count($ckeckPatient) > 0)
-            {
-                //     echo "success";
-                $idPerson = DB::table('patient')->select('person_id')->where(['id'=>$idPatient])->get();
-                $person = DB::table('person')->select(
-                    "name", "gender", "blodType", "address", "phone"
-                )->where(['id'=>$idPerson])->get();
-                $person = (array) $person[0];
+        $guardian = $request->input('guardian');
+        $guardianPhone = $request->input('guardianPhone');
+        $rgister = $request->input('rgister');
+        $patient = DB::table(patient)->select('*')->where(['guardian'=>$guardian,'guardianPhone'=>$guardianPhone,'rgister'=>$rgister])->toArray();
 
-                $result = [
-                    "name"=>$person["name"],
-                    "gender"=>$person["gender"],
-                    "blodType"=>$person["blodType"],
-                    "address"=>$person["address"],
-                    "phone"=>$person["phone"]
-                ];
-                Log::debug("succeeded");
-            }
-            else
-            {
-                Log::debug("failed");
-                $result = (object) ["error" => "No Patient"];
-            }
-        }
+        return $patient;
     }
 
-    public function patientRegistration(Request $request){
-        $this->validate($request, [
-            'name' => 'reqired',
-            'address' => 'reqired',
-            'gender' => 'reqired',
-            'birthDay' => 'reqired',
-            'blodtype' => 'reqired',
-            'phone' => 'reqired',
-            'religion' => 'reqired',
-            'nik' => 'reqired'
-        ]);
+    public function patientRegistration(Request $request){ 
+        $name = $request->input('name');
+        $address = $request->input('address');
+        $gender = $request->input('gender');
+        $birthDay = $request->input('birthDay');
+        $blodtype = $request->input('blodtype');
+        $phone = $request->input('phone');
+        $religion = $request->input('religion');
+        $nik = $request->input('nik');
         
-        $person = new person([
-            'name' = $request->get('name');
-            'address' = $request->get('address');
-            'gender' = $request->get('gender');
-            'birthDay' = $request->get('birthhDay');
-            'blodtype' = $request->get('blodtype');
-            'phone' = $request->get('phone');
-            'religion' = $request->get('religion');
-            'nik' = $request->get('nik');
+        $data = array('name' => $name,'address' => $address,'gender' => $gender,'birthDay' => $birthDay,
+        'blodtype' => $blodtype,'phone' => $phone, 'religion' => $religion, 'nik' => $nik);
 
-        ]);
-        $person->save();
-
-        $ckeckPerson = DB::table('person')->where(['nik'=>$person["nik"]])->get();
+        DB::table('person') -> insert($data);
+        $ckeckPerson = DB::table('person')->select('id')->where(['nik'=>$nik])->get();
         if(count($ckeckPerson) > 0)
         {
             //     echo "success";
-            $idPerson = DB::table('person')->select('id')->where(['nik'=>$ckeckPerson])->get();
-            $this->validate($request, [
-                'person_id' => 'reqired',
-                'guardian' => 'reqired',
-                'guardianPhone' => 'reqired'
-            ]);
-            
-            $patient = new person([
-                'person_id' = $request->get($idPerson);
-                'guardian' = $request->get('guardian');
-                'guardianPhone' = $request->get('guardianPone');    
-            ]);
-            $patient->save();
+            $person_id = $ckeckPerson;
+            $guardian = $request->input('guardian');
+            $guardianPhone = $request->input('guardianPone');
+        
+            $data2 = array('person_id' => $person_id,'guardian' => $guardian,'guardianPone' => $guardianPone);
+
+            DB::table('patient') -> insert($data2);
+
             Log::debug("succeeded");
         }
         else
@@ -131,15 +84,13 @@ class PatientController extends Controller
         }
     }
     public function updatePatientInfo(Request $request, $id){
-        $this->validate($request, [
-            'guardian' => 'reqired',
-            'guardianPhone' => 'reqired'
-        ]);
+        $person_id = $request->input('person_id');
+        $guardian = $request->input('guardian');
+        $guardianPhone = $request->input('guardianPone');
 
-        $patient = Patient::find($id);
-        $patient -> guardian = $request->get(guardian);
-        $patient -> guardianPhone = $request->get(guardianPhone);
-        $patieent->save();
+        $update = array('person_id' => $person_id,'guardian' => $guardian,'guardianPone' => $guardianPone);
+
+        DB::table('patient') -> update($update) -> where(['id'=>$id]);
     }
 }
 ?>
