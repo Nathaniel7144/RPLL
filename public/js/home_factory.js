@@ -115,7 +115,6 @@ function setSearch() {
     new Modal().createFromCollection(MODAL_PER_MENU[selected_menu], "seach__box_modal");
 
     $("#search").click(function () {
-        console.log('tes');
         $("#seach__box_modal").modal();
     })
 }
