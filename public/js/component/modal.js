@@ -30,6 +30,28 @@ class Modal {
                     `
                 ,
                 buttons: ['Search', 'Cancel']
+            },
+            'medical record': {
+                title: "Search Medical Record",
+                content:
+                    `
+                        <form>
+                            <div class="form-group">
+                                <label for="bday">Date:</label>
+                                <input type="date" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="patient">Patient:</label>
+                                <input type="text" class="form-control" placeholder="Patient Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="physician">Physician:</label>
+                                <input type="text" class="form-control" placeholder="Physician Name">
+                            </div>
+                        </form>
+                    `
+                ,
+                buttons: ['Search', 'Cancel']
             }
         },
         result: {
