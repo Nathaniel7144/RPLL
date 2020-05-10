@@ -11,15 +11,20 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<script src="{{asset('js/userview.js')}}"></script>
-	<script src="{{asset('js/home.js')}}"></script>
+	<script src="{{asset('js/home_factory.js')}}"></script>
 	<script src="{{asset('js/util.js')}}"></script>
 </head>
 
 <body id="home">
 	<header>
-		<form class="search form-control">
+		<form id="search" class="search form-control">
 			<img id="ic_search" src="/img/ic_search.png"/>
-			<input type="text" class="form-control" id="search__box" placeholder="Search">
+			<input 
+				type="text" 
+				class="form-control" 
+				id="search__box" 
+				placeholder="Search" 
+				disabled>
 		</form>
 		<div class="profile">
 			<div class="profile__text">

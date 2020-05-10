@@ -10,6 +10,15 @@ function getUser(){
     return JSON.parse(sessionStorage.getItem("user"));
 }
 
+function createSession(user){
+    sessionStorage.setItem("user", JSON.stringify({
+        "id": user.id,
+        "name": user.name,
+        "gender": user.gender,
+        "position": user.position
+    }));
+}
+
 function logout(){
     sessionStorage.removeItem("user");
 }

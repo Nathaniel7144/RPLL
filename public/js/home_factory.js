@@ -6,14 +6,14 @@ UI_BASED_ON_JOBS = {
             { menu: "Queue", search: "Patient" },
             { menu: "Medical Records", search: "Medical Record" }
         ],
-        path: "position_specific/doctor_nurse.js"
+        path: "position_specific/nurse_physician.js"
     },
     "Nurse": {
         basic: [
             { menu: "Queue", search: "Patient" },
             { menu: "Medical Records", search: "Medical Record" }
         ],
-        path: "position_specific/doctor_nurse.js"
+        path: "position_specific/nurse_physician.js"
     },
     "Customer Service": {
         basic: [
@@ -44,6 +44,7 @@ selected_menu = -1;
 
 $(document).ready(function () {
     if (getUser() !== null) {
+        importScript("component/modal.js");
         userView = new UserView(getUser());
 
         userView.setAvatar();
@@ -52,9 +53,11 @@ $(document).ready(function () {
         onHoverProfileText();
         onClickLogoutButton();
         getMenu();
-        setSearch();
         onSelectMenu();
-        setHomeBasedOnPosition();
+        getHomeType();
+
+        // default selected is first menu
+        $(".nav-link")[0].click();
 
     } else {
         redirectTo("/login");
@@ -81,20 +84,12 @@ function onClickLogoutButton() {
 }
 
 function getMenu() {
-    selected_menu = 0;
-    isSelected = false;
     for (ui of UI_BASED_ON_JOBS[getUser().position].basic) {
-        classname = "nav-link active";
-        if (!isSelected) {
-            isSelected = true;
-        } else {
-            classname = "nav-link";
-        }
 
         $("#menu").append(
             `
             <li class="nav-item">
-            <a class="${classname}" data-toggle="tab" href="#">${ui.menu}</a>
+            <a class="nav-link" data-toggle="tab" href="#">${ui.menu}</a>
             </li>
             `
         );
@@ -112,11 +107,19 @@ function setSearch() {
     $("#search__box").attr(
         "placeholder",
         `Search ${
-            UI_BASED_ON_JOBS[getUser().position].basic[selected_menu]["search"]
+        UI_BASED_ON_JOBS[getUser().position].basic[selected_menu]["search"]
         }`
     )
+    // changing search box modal per position
+    $("#seach__box_modal").remove();
+    new Modal().createFromCollection(MODAL_PER_MENU[selected_menu], "seach__box_modal");
+
+    $("#search").click(function () {
+        console.log('tes');
+        $("#seach__box_modal").modal();
+    })
 }
 
-function setHomeBasedOnPosition() {
+function getHomeType() {
     importScript(UI_BASED_ON_JOBS[getUser().position].path);
 }

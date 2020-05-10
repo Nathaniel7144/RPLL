@@ -51,7 +51,7 @@ function onSubmitLoginForm(){
                     onLoginFail(result.error);
                 }else{
                     user.id = result.emp_id;
-                    createSession();
+                    createSession(user);
                     redirectTo("/home");
                 }
             });
@@ -61,13 +61,4 @@ function onSubmitLoginForm(){
 
 function onLoginFail(errorMessage){
     alert(errorMessage);
-}
-
-function createSession(){
-    sessionStorage.setItem("user", JSON.stringify({
-        "id": user.id,
-        "name": user.name,
-        "gender": user.gender,
-        "position": user.position
-    }));
 }
