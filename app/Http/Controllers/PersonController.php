@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Patient;
+use App\Person;
 use Illuminate\Support\Facades\DB;
 
 use function GuzzleHttp\Promise\all;
 
-class PatientController extends Controller
+class PersonController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,8 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $patient = Patient::all();
-        return view('testpat.Patient',compact('patient'));
+        $person = Person::all();
+        return view('testper.Person',compact('person'));
     }
 
     /**
@@ -29,7 +29,7 @@ class PatientController extends Controller
     public function create()
     {
         //
-        return view('testpat.createPatient');
+        return view('testper.createPerson');
     }
 
     /**
@@ -40,14 +40,19 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        DB::table('patient')->insert([
-            ['person_id'=>$request->input('person_id'),
-            'register'=>$request->input('register'),
-            'guardian'=>$request->input('guardian'),
-            'guardianphone'=>$request->input('guardianphone')]
+        //
+        DB::table('person')->insert([
+            ['name'=>$request->input('name'),
+            'address'=>$request->input('address'),
+            'gender'=>$request->input('gender'),
+            'birthday'=>$request->input('birthday'),
+            'bloodtype'=>$request->input('bloodtype'),
+            'phone'=>$request->input('phone'),
+            'religion'=>$request->input('religion'),
+            'nik'=>$request->input('nik')]
         ]);
 
-        return view('testpat.createPatient');
+        return view('testper.createPerson');
     }
 
     /**
@@ -58,10 +63,10 @@ class PatientController extends Controller
      */
     public function show($id)
     {
-         //menampilkan by id
-         $patient = DB::table('patient')->where(['id'=>$id])->get();
+        //
+        $person = DB::table('person')->where(['id'=>$id])->get();
 
-         return $patient;
+        return $person;
     }
 
     /**
@@ -73,7 +78,9 @@ class PatientController extends Controller
     public function edit($id)
     {
         //
-        return view('testpat.createPatient');
+
+        $person =  Person::find($id);
+        return view('testper/editPerson', compact('person','id'));
     }
 
     /**
@@ -86,7 +93,19 @@ class PatientController extends Controller
     public function update(Request $request, $id)
     {
         //
-        return view('testpat.createPatient');
+        DB::table('person')
+              ->where(['id'=>$id])
+              ->update([
+                'name'=>$request->name,
+                'address'=>$request->address,
+                'gender'=>$request->gender,
+                'birthday'=>$request->birthday,
+                'bloodtype'=>$request->bloodtype,
+                'phone'=>$request->phone,
+                'religion'=>$request->religion,
+                'nik'=>$request->nik
+            ]);
+        return redirect('testper.Person');
     }
     /**
      * Remove the specified resource from storage.
@@ -97,7 +116,6 @@ class PatientController extends Controller
     public function destroy($id)
     {
         //
-        return view('testpat.createPatient');
+        return view('testper.createPerson');
     }
 }
-?>

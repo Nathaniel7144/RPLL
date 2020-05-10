@@ -36,3 +36,16 @@ Route::post('/testmed/MedicalRecord','MedicalRecordController@store');
 Route::get('/testmed/{med}/edit','MedicalRecordController@edit');
 Route::patch('/testmed/{med}','MedicalRecordController@update');
 
+//patient
+Route::get('/testpat/Patient','PatientController@index');
+Route::get('/testpat/createPatient','PatientController@create');
+Route::post('/testpat/Patient','PatientController@store');
+// Route::get('/testpat/Patient','PatientControlle@edit');
+// Route::patch('/testmed/{med}','MedicalRecordController@update');
+
+//person
+Route::get('/testper/Person','PersonController@index');
+Route::get('/testper/createPerson','PersonController@create');
+Route::post('/testper/Person','PersonController@store');
+Route::get('/testper/{per}/testper/editPerson','PersonController@edit');
+Route::patch('/testper/{per}','PersonController@update');

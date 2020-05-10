@@ -29,5 +29,5 @@
         </tbody>
     </table>
     <br><br>
-    <a href="/createmedrec"><button type="submit" name="btn_add" name="add" value="add">Tambah Data</button></a>
+    <a href="/testmed/createmedrec"><button type="submit" name="btn_add" name="add" value="add">Tambah Data</button></a>
 </html>
