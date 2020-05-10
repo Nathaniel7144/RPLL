@@ -49,3 +49,14 @@ Route::get('/testper/createPerson','PersonController@create');
 Route::post('/testper/Person','PersonController@store');
 Route::get('/testper/{per}/testper/editPerson','PersonController@edit');
 Route::patch('/testper/{per}','PersonController@update');
+
+//product
+Route::get('/testpro/Product','ProductController@index');
+Route::get('/testpro/create','ProductController@create');
+Route::post('/testpro/Product','ProductController@store');
+Route::get('/testpro/{product}/edit','ProductController@edit');
+Route::patch('/testpro/{product}','ProductController@update');
+Route::get('/testpro/search',function(){
+    return view('/testpro/search');
+});
+Route::post('/testpro/search','ProductController@show');
