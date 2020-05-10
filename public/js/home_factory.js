@@ -19,24 +19,28 @@ UI_BASED_ON_JOBS = {
         basic: [
             { menu: "Patient Registration", search: "Patient" },
             { menu: "Queue", search: "Patient" }
-        ]
+        ],
+        path: "position_specific/customer-service.js"
     },
     "HR": {
         basic: [
             { menu: "Employees", search: "Employee" }
-        ]
+        ],
+        path: "position_specific/hr.js"
     },
     "Pharmacy": {
         basic: [
             { menu: "Selling", search: "Product" },
             { menu: "Products", search: "Product" }
-        ]
+        ],
+        path: "position_specific/pharmacy.js"
     },
     "Cashier": {
         basic: [
             { menu: "Invoices", search: "Invoice" },
             { menu: "Payment History", search: "Invoice" }
-        ]
+        ],
+        path: "position_specific/cashier.js"
     }
 }
 
@@ -111,11 +115,11 @@ function setSearch() {
         }`
     )
     // changing search box modal per position
-    $("#seach__box_modal").remove();
-    new Modal().createFromCollection(MODAL_PER_MENU[selected_menu], "seach__box_modal");
+    $("#search__box_modal").remove();
+    new Modal().createFromCollection(MODAL_PER_MENU[selected_menu], "search__box_modal");
 
     $("#search").click(function () {
-        $("#seach__box_modal").modal();
+        $("#search__box_modal").modal();
     })
 }
 
