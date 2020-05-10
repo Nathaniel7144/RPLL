@@ -4,12 +4,67 @@ class Modal {
         search: {
             patient: {
                 title: "Search Patient",
-                content: 
-                    '<input type="text" placeholder="Test">'
+                content:
+                    `
+                        <form>
+                            <div class="form-group">
+                                <label for="patient">Patient:</label>
+                                <input type="text" class="form-control" placeholder="Patient Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="gender">Gender:</label>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="male">
+                                    <label class="custom-control-label" for="male">Male</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="female">
+                                    <label class="custom-control-label" for="female">Female</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="bday">Birthday:</label>
+                                <input type="date" class="form-control">
+                            </div>
+                        </form>
+                    `
+                ,
+                buttons: ['Search', 'Cancel']
+            },
+            'medical record': {
+                title: "Search Medical Record",
+                content:
+                    `
+                        <form>
+                            <div class="form-group">
+                                <label for="bday">Date:</label>
+                                <input type="date" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="patient">Patient:</label>
+                                <input type="text" class="form-control" placeholder="Patient Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="physician">Physician:</label>
+                                <input type="text" class="form-control" placeholder="Physician Name">
+                            </div>
+                        </form>
+                    `
                 ,
                 buttons: ['Search', 'Cancel']
             }
+        },
+        result: {
+            patient: {
+                title: "Search Patient Result",
+                content: '',
+                buttons: ['Cancel']
+            }
         }
+    }
+
+    constructor() {
+        importStyle('components/modal.css');
     }
 
     create(data, size) {
@@ -31,7 +86,9 @@ class Modal {
                     
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                        ${this.createButtons(data.buttons)}
+                        <div class="btn-group-vertical">
+                            ${this.createButtons(data.buttons)}
+                        </div>
                     </div>
                     
                 </div>
@@ -44,9 +101,9 @@ class Modal {
     createButtons(buttons) {
         let htmlButtons = '';
         for (let btn of buttons) {
-            let htmlButton = '<button type="button" class="btn btn-modal btn-secondary" data-dismiss="modal">Cancel</button>';
+            let htmlButton = '<button type="button" class="btn btn-modal btn-modal-custom btn-secondary" data-dismiss="modal">Cancel</button>';
             if (btn !== 'Cancel') {
-                htmlButton = `<button type="button" class="btn btn-modal btn-success" data-dismiss="modal">${btn}</button>`;
+                htmlButton = `<button type="button" class="btn btn-modal btn-modal-custom btn-success" data-dismiss="modal">${btn}</button>`;
             }
             htmlButtons += htmlButton;
         }
@@ -57,10 +114,18 @@ class Modal {
         $("body").append(modal);
     }
 
-    createFromCollection(labels, id, size='lg') {
-        let modalData = this.MODALS_COLLECTION[labels.general][labels.specific];
-        modalData["id"] = id;
-
-        this.embed(this.create(modalData, size));
+    createFromCollection(data, id, size = 'lg') {
+        if (data !== undefined) {
+            let modalData = this.MODALS_COLLECTION[data.general][data.specific];
+            modalData["id"] = id;
+            if (data.general == 'result') {
+                importScript('component/table.js');
+                modalData['content'] = new Table().create({
+                    head: data.head,
+                    contents: data['table content']
+                });
+            }
+            this.embed(this.create(modalData, size));
+        }
     }
 }

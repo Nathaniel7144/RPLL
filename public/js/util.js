@@ -28,3 +28,7 @@ function importScript(path){
         `<script src="js/${path}"></script>`
     );
 }
+
+function importStyle(path) {
+    $("head").append(`<link rel="stylesheet" href="/css/${path}">`);
+}
