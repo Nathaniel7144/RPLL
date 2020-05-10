@@ -52,6 +52,73 @@ class Modal {
                     `
                 ,
                 buttons: ['Search', 'Cancel']
+            },
+            employee: {
+                title: 'Search Employee',
+                content:
+                    `
+                        <form>
+                            <div class="form-group">
+                                <label for="id">ID:</label>
+                                <input type="text" class="form-control" placeholder="ID">
+                            </div>
+                            <div class="form-group">
+                                <label for="employee">Employee:</label>
+                                <input type="text" class="form-control" placeholder="Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="gender">Gender:</label>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="male">
+                                    <label class="custom-control-label" for="male">Male</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="female">
+                                    <label class="custom-control-label" for="female">Female</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="specialist">Specialist:</label>
+                                <input type="text" class="form-control" placeholder="Specialist">
+                            </div>
+                        </form>
+                    `
+                ,
+                buttons: ['Search', 'Cancel']
+            },
+            product: {
+                title: 'Search Product',
+                content: `
+                <form>
+                    <div class="form-group">
+                        <label for="id">ID:</label>
+                        <input type="text" class="form-control" placeholder="Product ID">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" placeholder="Name">
+                    </div>
+                </form>
+                `,
+                buttons: ['Search', 'Cancel'],
+                size: 'md'
+            },
+            invoice: {
+                title: 'Search Invoice',
+                content: `
+                <form>
+                    <div class="form-group">
+                        <label for="id">ID:</label>
+                        <input type="text" class="form-control" placeholder="Invoice ID">
+                    </div>
+                    <div class="form-group">
+                        <label for="patient-id">Patient:</label>
+                        <input type="text" class="form-control" placeholder="Patient ID">
+                    </div>
+                </form>
+                `,
+                buttons: ['Search', 'Cancel'],
+                size: 'md'
             }
         },
         result: {
@@ -114,10 +181,16 @@ class Modal {
         $("body").append(modal);
     }
 
-    createFromCollection(data, id, size = 'lg') {
+    createFromCollection(data, id) {
         if (data !== undefined) {
             let modalData = this.MODALS_COLLECTION[data.general][data.specific];
             modalData["id"] = id;
+
+            let size = 'lg';
+            if (modalData.size !== undefined) {
+                size = modalData.size;
+            }
+
             if (data.general == 'result') {
                 importScript('component/table.js');
                 modalData['content'] = new Table().create({

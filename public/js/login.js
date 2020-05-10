@@ -10,6 +10,7 @@ function changeUIIfUserExists() {
     // email -> password
     if (user !== undefined) {
         emailToPasswordInput();
+        userView = new UserView(user);
         userView.setAvatar();
         userView.displayUsername();
     }
