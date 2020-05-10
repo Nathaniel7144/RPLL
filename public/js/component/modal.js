@@ -31,10 +31,17 @@ class Modal {
                 ,
                 buttons: ['Search', 'Cancel']
             }
+        },
+        result: {
+            patient: {
+                title: "Search Patient Result",
+                content: '',
+                buttons: ['Cancel']
+            }
         }
     }
 
-    constructor(){
+    constructor() {
         importStyle('components/modal.css');
     }
 
@@ -85,11 +92,17 @@ class Modal {
         $("body").append(modal);
     }
 
-    createFromCollection(labels, id, size = 'lg') {
-        if (labels !== undefined) {
-            let modalData = this.MODALS_COLLECTION[labels.general][labels.specific];
+    createFromCollection(data, id, size = 'lg') {
+        if (data !== undefined) {
+            let modalData = this.MODALS_COLLECTION[data.general][data.specific];
             modalData["id"] = id;
-
+            if (data.general == 'result') {
+                importScript('component/table.js');
+                modalData['content'] = new Table().create({
+                    head: data.head,
+                    contents: data['table content']
+                });
+            }
             this.embed(this.create(modalData, size));
         }
     }

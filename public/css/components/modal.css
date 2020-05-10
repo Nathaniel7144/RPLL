@@ -1,6 +1,11 @@
 .modal-lg .modal-title{
 	color: #707070;
-	margin-left: 40%;
+}
+
+/* body */
+
+.modal-body {
+    padding: 1rem 3rem;
 }
 
 /* footer */
@@ -13,13 +18,10 @@
 .btn-modal-custom {
     width: 60%;
     margin: 10px 0;
+    border-radius: 20px;
 }
 
 .btn-group-vertical>.btn-group:not(:last-child)>.btn, .btn-group-vertical>.btn:not(:last-child):not(.dropdown-toggle),
 .btn-group-vertical>.btn-group:not(:first-child)>.btn, .btn-group-vertical>.btn:not(:first-child){
     border-radius: 20px;
-}
-
-form {
-    padding: 1rem 3rem;
 }
