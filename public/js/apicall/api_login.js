@@ -1,4 +1,4 @@
-function getUserFromEmail(_email){
+function getUserByEmail(_email){
     return $.ajax({
         type: 'POST',
         url: '/login-email',
@@ -14,7 +14,7 @@ function getUserFromEmail(_email){
     });
 }
 
-function userLogin(_email, _pwd){
+function authenticateUser(_email, _pwd){
     return $.ajax({
         type: 'POST',
         url: '/login-pass',

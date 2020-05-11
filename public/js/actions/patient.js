@@ -1,9 +1,5 @@
 importScript('/apicall/api_patient.js');
 
-LISTING = {
-
-}
-
 function searchPatient() {
     $.when(apiSearchPatient(getAllInputsInForm("#search-patient")))
     .done(function(results){
