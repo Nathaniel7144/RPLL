@@ -31,7 +31,7 @@ function onSubmitLoginForm(){
         event.preventDefault();
         userInput = $("#login__input");
         if(userInput.attr('type') === "email"){
-            $.when(getUserFromEmail(userInput.val())).done(function(result){
+            $.when(getUserByEmail(userInput.val())).done(function(result){
                 result = JSON.parse(result);
                 if(result.error !== undefined){
                     onLoginFail(result.error);
@@ -42,7 +42,7 @@ function onSubmitLoginForm(){
             })
         }else{ // if password is what is submitted
             $.when(
-                userLogin(
+                authenticateUser(
                     user.email,
                     userInput.val()
                 )
