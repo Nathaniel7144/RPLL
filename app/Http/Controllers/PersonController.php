@@ -18,7 +18,6 @@ class PersonController extends Controller
     public function index()
     {
         $person = Person::all();
-        return view('testper.Person',compact('person'));
     }
 
     /**
@@ -29,7 +28,6 @@ class PersonController extends Controller
     public function create()
     {
         //
-        return view('testper.createPerson');
     }
 
     /**
@@ -52,7 +50,6 @@ class PersonController extends Controller
             'nik'=>$request->input('nik')]
         ]);
 
-        return view('testper.createPerson');
     }
 
     /**
@@ -105,7 +102,6 @@ class PersonController extends Controller
                 'religion'=>$request->religion,
                 'nik'=>$request->nik
             ]);
-        return redirect('testper.Person');
     }
     /**
      * Remove the specified resource from storage.
@@ -116,6 +112,5 @@ class PersonController extends Controller
     public function destroy($id)
     {
         //
-        return view('testper.createPerson');
     }
 }

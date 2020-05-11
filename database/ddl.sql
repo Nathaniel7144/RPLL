@@ -3,7 +3,7 @@ CREATE TABLE person (
    name VARCHAR(50) NOT NULL,
    address VARCHAR(100) NOT NULL,
    gender INT NOT NULL,
-   birthday DATETIME NOT NULL,
+   birthday DATE NOT NULL,
    bloodtype CHAR(2) NOT NULL,
    phone VARCHAR(15) NOT NULL,
    religion VARCHAR(20) NOT NULL,

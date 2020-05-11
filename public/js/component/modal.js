@@ -6,30 +6,37 @@ class Modal {
                 title: "Search Patient",
                 content:
                     `
-                        <form>
+                        <form id="search-patient">
                             <div class="form-group">
                                 <label for="patient">Patient:</label>
-                                <input type="text" class="form-control" placeholder="Patient Name">
+                                <input type="text" class="form-control" name="name" placeholder="Patient Name">
                             </div>
                             <div class="form-group">
                                 <label for="gender">Gender:</label>
                                 <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input" id="male">
+                                    <input type="radio" label="gender" class="custom-control-input" name="0">
                                     <label class="custom-control-label" for="male">Male</label>
                                 </div>
                                 <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input" id="female">
+                                    <input type="radio" label="gender" class="custom-control-input" name="1">
                                     <label class="custom-control-label" for="female">Female</label>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="bday">Birthday:</label>
-                                <input type="date" class="form-control">
+                                <input type="date" name="birthday" class="form-control">
                             </div>
                         </form>
                     `
                 ,
-                buttons: ['Search', 'Cancel']
+                buttons: [
+                    {
+                        text: 'Search',
+                        onclick: 'searchPatient()'
+                    },
+                    'Cancel'
+                ],
+                actions: ['actions/patient.js']
             },
             'medical record': {
                 title: "Search Medical Record",
@@ -135,7 +142,7 @@ class Modal {
     }
 
     create(data, size) {
-        let modal = `
+        let modalTemplate = `
             <div class="modal fade" id="${data.id}">
                 <div class="modal-dialog modal-${size} modal-dialog-centered">
                 <div class="modal-content">
@@ -154,7 +161,7 @@ class Modal {
                     <!-- Modal footer -->
                     <div class="modal-footer">
                         <div class="btn-group-vertical">
-                            ${this.createButtons(data.buttons)}
+                            ${this.createButtons(data.buttons, data.actions)}
                         </div>
                     </div>
                     
@@ -162,15 +169,20 @@ class Modal {
                 </div>
             </div>    
         `;
-        return modal;
+        return modalTemplate;
     }
 
-    createButtons(buttons) {
+    createButtons(buttons, actions) {
         let htmlButtons = '';
         for (let btn of buttons) {
             let htmlButton = '<button type="button" class="btn btn-modal btn-modal-custom btn-secondary" data-dismiss="modal">Cancel</button>';
             if (btn !== 'Cancel') {
-                htmlButton = `<button type="button" class="btn btn-modal btn-modal-custom btn-success" data-dismiss="modal">${btn}</button>`;
+                if (btn.text !== undefined) {
+                    htmlButton = `<button type="button" class="btn btn-modal btn-modal-custom btn-success" onclick="${btn.onclick}" data-dismiss="modal">${btn.text}</button>`;
+                    importScript(actions[buttons.indexOf(btn)]);
+                }else{
+                    htmlButton = `<button type="button" class="btn btn-modal btn-modal-custom btn-success" data-dismiss="modal">${btn}</button>`;
+                }
             }
             htmlButtons += htmlButton;
         }
@@ -199,6 +211,7 @@ class Modal {
                 });
             }
             this.embed(this.create(modalData, size));
+
         }
     }
 }

@@ -44,7 +44,7 @@ Route::get('/testpat/searchid','PatientController@search');
 Route::post('/testpat/Patient','PatientController@store');
 Route::get('/testpat/{pat}/testpat/editPatient','PatientController@edit');
 Route::patch('/testpat/{pat}','PatientController@update');
-Route::patch('/testpat/searchid','PatientController@searchperson');
+Route::get('/search-patient','PatientController@searchPatient');
 
 //person
 Route::get('/testper/Person','PersonController@index');

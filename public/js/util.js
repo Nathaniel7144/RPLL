@@ -1,16 +1,16 @@
-function setInputValue(input, value){
+function setInputValue(input, value) {
     input.val(value);
 }
 
-function redirectTo(link){
+function redirectTo(link) {
     window.location.href = window.location.origin + link;
 }
 
-function getUser(){
+function getUser() {
     return JSON.parse(sessionStorage.getItem("user"));
 }
 
-function createSession(user){
+function createSession(user) {
     sessionStorage.setItem("user", JSON.stringify({
         "id": user.id,
         "name": user.name,
@@ -19,11 +19,11 @@ function createSession(user){
     }));
 }
 
-function logout(){
+function logout() {
     sessionStorage.removeItem("user");
 }
 
-function importScript(path){
+function importScript(path) {
     $("head").append(
         `<script src="js/${path}"></script>`
     );
@@ -31,4 +31,18 @@ function importScript(path){
 
 function importStyle(path) {
     $("head").append(`<link rel="stylesheet" href="/css/${path}">`);
+}
+
+function getAllInputsInForm(formId) {
+    formInputs = {}
+    $(`${formId} :input`).each(function(){
+        if(this.type === 'radio') {
+            if(this.checked) {
+                formInputs[$(this).attr("label")] = this.name;
+            }
+        }else{
+            formInputs[this.name] = $(this).val();
+        }
+    });
+    return formInputs;
 }

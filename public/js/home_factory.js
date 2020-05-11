@@ -45,10 +45,12 @@ UI_BASED_ON_JOBS = {
 }
 
 selected_menu = -1;
+var modal = undefined;
 
 $(document).ready(function () {
     if (getUser() !== null) {
         importScript("component/modal.js");
+        modal = new Modal();
         userView = new UserView(getUser());
 
         userView.setAvatar();
@@ -116,7 +118,7 @@ function setSearch() {
     )
     // changing search box modal per position
     $("#search__box_modal").remove();
-    new Modal().createFromCollection(MODAL_PER_MENU[selected_menu], "search__box_modal");
+    modal.createFromCollection(MODAL_PER_MENU[selected_menu], "search__box_modal");
 
     $("#search").click(function () {
         $("#search__box_modal").modal();

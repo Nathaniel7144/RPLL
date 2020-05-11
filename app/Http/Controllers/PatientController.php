@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Patient;
 use App\Person;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 use function GuzzleHttp\Promise\all;
 
@@ -19,7 +20,6 @@ class PatientController extends Controller
     public function index()
     {
         $patient = Patient::all();
-        return view('testpat.Patient',compact('patient'));
     }
 
     /**
@@ -30,15 +30,8 @@ class PatientController extends Controller
     public function create()
     {
         //
-        return view('testpat.createPatient');
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    }
     public function store(Request $request)
     {
         DB::table('patient')->insert([
@@ -48,7 +41,6 @@ class PatientController extends Controller
             'guardianphone'=>$request->input('guardianphone')]
         ]);
 
-        return view('testpat.createPatient');
     }
 
     /**
@@ -74,16 +66,8 @@ class PatientController extends Controller
     public function edit($id)
     {
         $patient =  Patient::find($id);
-        return view('testpat.editPatient', compact('patient','id'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         DB::table('patient')
@@ -96,16 +80,11 @@ class PatientController extends Controller
             ]);
         return redirect('testpat/Patient');
     }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         //
-        return view('testpat.createPatient');
+
     }
 
     /**
@@ -128,17 +107,28 @@ class PatientController extends Controller
      */
     public function search()
     {
-        return view('testpat.searchid');
+        
     }
 
-    public function searchperson(Request $request)
+    public function searchPatient(Request $request)
     {
-        $name = $request->name;
-        $gender = $request->gender;
-        $address = $request->address;
-        $id = DB::table('person')->select('id')->where(['name'=>$name, 'gender'=>$gender, 'address'=>$address])->get();
-        $patient =  Person::find($id);
-        return $patient;
+        return DB::table('person')
+        ->select(
+            'patient.id as id',
+            'name',
+            'gender',
+            'birthday'
+        )
+        ->join(
+            'patient', 'person.id', '=', 'patient.person_id'
+        )
+        ->where(
+            [
+                'name'=>$request->input('name'),
+                'gender'=> (int) $request->input('gender'),
+                'birthday'=>parent::formatDate($request->input('birthday'))
+            ]
+        )->get()->toArray();
     }
 }
 ?>

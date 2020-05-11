@@ -32,8 +32,8 @@ class Table {
         let htmlContents = '';
         for (let row of contents) {
             htmlContents += '<tr>';
-            for (let attr of row) {
-                htmlContents += `<td>${attr}</td>`;
+            for (let attr in row) {
+                htmlContents += `<td>${row[attr]}</td>`;
             }
             htmlContents += '</tr>';
         }

@@ -56,9 +56,15 @@ class UserView {
     // that one that's called from classes
     displayUsername() {
         // method to display username if user has provided email
+        let name = this.name;
+
+        if (name.length > 4) {
+            name = name.slice(0, 4) + "..";
+        }
+
         if (!this.isundefined) {
             $("#user__name").text(
-                this.getTitle() + this.name
+                this.getTitle() + name
             );
         }
     }
